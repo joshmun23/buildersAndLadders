@@ -1,0 +1,56 @@
+<head>
+  <title>Climb That Ladder</title>
+</head>
+
+<body>
+  <!-- <h1>Ladder Time</h1> -->
+  {{> layoutApp}}
+</body>
+
+<template name="layoutApp">
+  <!-- what am i building? -->
+  {{> createPostLadder }}
+</template>
+
+<template name="createPostLadder">
+  <header>
+    <h1>{{ ladderName }}</h1>
+  </header>
+  <div class="togglebox">
+  {{#each ladderSteps}}
+    {{#if this.isUsed}}
+    <input id="toggle{{ this.stepIdx }}" type="radio" name="toggle" />
+    <label for="toggle{{ this.stepIdx }}">
+      <h1><span class="circle">{{ this.stepIdx }}</span></h1>
+    </label>
+    <section id="content{{ this.stepIdx }}">
+      <!-- <p>Content for the first accordion</p> -->
+    {{> Template.dynamic template=templateName data=this}}
+    </section>
+    {{/if}}
+  {{/each}}
+  </div>
+  {{#if canBuildLadder}}
+  <button type="submit">Create Post</button>
+  {{/if}}
+</template>
+
+<template name="productStep">
+  <header>
+    <h2>{{ this.displayName }}</h2>
+  </header>
+  <section class="cp-type-section">
+    {{#with description}}
+    <input class="product-step-field" type="text" name="Description">
+    {{/with}}
+  </section>
+  <footer>
+    <button type="text">Continue</button>
+  </footer>
+  <!-- {{#with description}}
+  {{/with}} -->
+</template>
+
+<template name="priceAndValueStep">
+  <h2>Dude. Yes.</h2>
+</template>

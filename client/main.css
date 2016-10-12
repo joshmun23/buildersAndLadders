@@ -1,0 +1,53 @@
+/* CSS declarations go here */
+/*// Visually hide radio buttons*/
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+
+input[type="radio"]:focus + label {
+  color: black;
+  /*background-color: wheat;*/
+}
+
+h1 .circle {
+  background: #11aa11;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 1.6em;
+  -webkit-box-shadow: 3px 3px 1px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow:    3px 3px 1px 0px rgba(50, 50, 50, 0.75);
+  box-shadow:         3px 3px 1px 0px rgba(50, 50, 50, 0.75);
+}
+
+/*// Style label/entry for accordion*/
+
+label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+/*// Style accordion content*/
+section {
+  height: 0;
+  transition: .3s all;
+  overflow: hidden;
+}
+
+/*// Open content when clicking label*/
+#toggle1:checked ~ #content1,
+#toggle2:checked ~ #content2,
+#toggle3:checked ~ #content3,
+#toggle4:checked ~ #content4 {
+/*  // set height for transition duration to work
+  // (also can set to auto without transition)*/
+  height: 200px;
+}
