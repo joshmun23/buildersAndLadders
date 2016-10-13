@@ -13,44 +13,126 @@
 </template>
 
 <template name="createPostLadder">
-  <header>
-    <h1>{{ ladderName }}</h1>
-  </header>
-  <div class="togglebox">
-  {{#each ladderSteps}}
-    {{#if this.isUsed}}
-    <input id="toggle{{ this.stepIdx }}" type="radio" name="toggle" />
-    <label for="toggle{{ this.stepIdx }}">
-      <h1><span class="circle">{{ this.stepIdx }}</span></h1>
-    </label>
-    <section id="content{{ this.stepIdx }}">
-      <!-- <p>Content for the first accordion</p> -->
-    {{> Template.dynamic template=templateName data=this}}
-    </section>
-    {{/if}}
-  {{/each}}
+  <div class="ui container">
+    <div class="ui segment">
+      <header>
+        <h1>{{ ladderName }}</h1>
+      </header>
+      <div class="sa-step-ladder ui accordion" id="create-post-ladder">
+      {{#each ladderSteps}}
+        {{#if this.isUsed}}
+        <!-- {{> Template.dynamic template=templateName data=this parent="createPostLadder"}} -->
+        {{> Template.dynamic template=templateName data=this}}
+        {{/if}}
+      {{/each}}
+      </div>
+      {{#if canBuildLadder}}
+      <button class="sa-step-ladder ui green button" id="create-post-marketplace-button" type="submit">Create Post</button>
+      {{/if}}
+    </div>
   </div>
-  {{#if canBuildLadder}}
-  <button type="submit">Create Post</button>
-  {{/if}}
 </template>
 
 <template name="productStep">
-  <header>
-    <h2>{{ this.displayName }}</h2>
-  </header>
-  <section class="cp-type-section">
+  <div class="title" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">
+    <span>
+      <h1 class="inline-block"><div class="circle">{{this.stepIdx}}</div></h1>
+      <h2 class="inline-block">{{ this.displayName }}</h2>
+    </span>
+    <div class="summary-details grey-font-color {{#unless showSummaryDetails this.stepIdx}}hide{{/unless}}">
+      <h5>Field Name: Field Vaue</h5>
+      <h5>Field Name: Field Vaue</h5>
+      <h5>Field Name: Field Vaue</h5>
+    </div>
+  </div>
+  <div class="content" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">
     {{#with description}}
-    <input class="product-step-field" type="text" name="Description">
+    <p class="transition hidden"><input class="product-step-field" type="text" name="Description"></p>
     {{/with}}
-  </section>
-  <footer>
-    <button type="text">Continue</button>
-  </footer>
-  <!-- {{#with description}}
-  {{/with}} -->
+
+    {{#unless lastStepIdx this.stepIdx 'stepCount'}}
+    <button class="ui button continue" type="text" data-step="{{ this.stepIdx }}" data-section="{{ sectionIdx.stepIdx }}">Continue</button>
+    {{/unless}}
+    {{#unless firstStepIdx this.stepIdx 'stepCount'}}
+    <button class="ui button previous" type="text" data-step="{{ this.stepIdx }}" data-section="{{ sectionIdx.stepIdx }}">Previous</button>
+    {{/unless}}
+  </div>
 </template>
 
 <template name="priceAndValueStep">
-  <h2>Dude. Yes.</h2>
+  <div class="title" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">
+    <span>
+      <h1 class="inline-block"><div class="circle">{{this.stepIdx}}</div></h1>
+      <h2 class="inline-block">{{ this.displayName }}</h2>
+    </span>
+    <div class="summary-details grey-font-color {{#unless showSummaryDetails this.stepIdx}}hide{{/unless}}">
+      <h5>Field Name: Field Vaue</h5>
+      <h5>Field Name: Field Vaue</h5>
+      <h5>Field Name: Field Vaue</h5>
+    </div>
+  </div>
+  <div class="content" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">
+    {{#with description}}
+    <p class="transition hidden"><input class="product-step-field" type="text" name="Description"></p>
+    {{/with}}
+
+    {{#unless lastStepIdx this.stepIdx 'stepCount'}}
+    <button class="ui button continue" type="text" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">Continue</button>
+    {{/unless}}
+    {{#unless firstStepIdx this.stepIdx 'stepCount'}}
+    <button class="ui button previous" type="text" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">Previous</button>
+    {{/unless}}
+  </div>
+</template>
+
+<template name="logisticsStep">
+  <div class="title" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">
+    <span>
+      <h1 class="inline-block"><div class="circle">{{this.stepIdx}}</div></h1>
+      <h2 class="inline-block">{{ this.displayName }}</h2>
+    </span>
+    <div class="summary-details grey-font-color {{#unless showSummaryDetails this.stepIdx}}hide{{/unless}}">
+      <h5>Field Name: Field Vaue</h5>
+      <h5>Field Name: Field Vaue</h5>
+      <h5>Field Name: Field Vaue</h5>
+    </div>
+  </div>
+  <div class="content" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">
+    {{#with description}}
+    <p class="transition hidden"><input class="product-step-field" type="text" name="Description"></p>
+    {{/with}}
+
+    {{#unless lastStepIdx this.stepIdx 'stepCount'}}
+    <button class="ui button continue" type="text" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">Continue</button>
+    {{/unless}}
+    {{#unless firstStepIdx this.stepIdx 'stepCount'}}
+    <button class="ui button previous" type="text" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">Previous</button>
+    {{/unless}}
+  </div>
+</template>
+
+<template name="audienceStep">
+  <div class="title" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">
+    <span>
+      <h1 class="inline-block"><div class="circle">{{this.stepIdx}}</div></h1>
+      <h2 class="inline-block">{{ this.displayName }}</h2>
+    </span>
+    <div class="summary-details grey-font-color {{#unless showSummaryDetails this.stepIdx}}hide{{/unless}}">
+      <h5>Field Name: Field Vaue</h5>
+      <h5>Field Name: Field Vaue</h5>
+      <h5>Field Name: Field Vaue</h5>
+    </div>
+  </div>
+  <div class="content" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">
+    {{#with description}}
+    <p class="transition hidden"><input class="product-step-field" type="text" name="Description"></p>
+    {{/with}}
+
+    {{#unless lastStepIdx this.stepIdx 'stepCount'}}
+    <button class="ui button continue" type="text" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">Continue</button>
+    {{/unless}}
+    {{#unless firstStepIdx this.stepIdx 'stepCount'}}
+    <button class="ui button previous" type="text" data-step="{{ this.stepIdx }}" data-section="{{ this.sectionIdx }}">Previous</button>
+    {{/unless}}
+  </div>
 </template>
